@@ -1,0 +1,5 @@
+SELECT Count(*) FROM(
+	SELECT f.term
+	FROM frequency AS f
+	WHERE f.docid = "10398_txt_earn" AND f.count = 1
+) x;

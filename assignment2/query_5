@@ -1,0 +1,7 @@
+SELECT  Count (*) FROM (
+	SELECT  f.docid, SUM (f.term) AS Num_terms
+	FROM frequency f
+	WHERE f.term IS NOT NULL AND f.count IS NOT NULL		
+	GROUP BY f.docid
+	HAVING SUM (f.count) > 300
+) x;

@@ -1,0 +1,4 @@
+SELECT Count(*) 
+FROM frequency AS f
+WHERE f.term = "parliament";
+

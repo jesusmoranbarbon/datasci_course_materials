@@ -1,0 +1,28 @@
+DROP VIEW m;
+DROP VIEW Trans;
+
+CREATE VIEW m
+AS SELECT f_1.docid AS row, f_1.term AS col, f_1.count AS value
+	FROM (
+		SELECT * FROM frequency
+		UNION
+		SELECT "q" as docid, "washington" as term, 1 as count 
+		UNION
+		SELECT "q" as docid, "taxes" as term, 1 as count
+		UNION 
+		SELECT "q" as docid, "treasury" as term, 1 as count
+	) f_1;
+
+
+CREATE VIEW Trans
+AS SELECT m.col AS row, m.row AS col, m.value FROM m;
+
+SELECT MAX(value) FROM(
+	SELECT  m.row, Trans.col, SUM(m.value * Trans.value) AS value
+	FROM m
+	JOIN Trans 	
+	ON m.col = Trans.row
+	WHERE m.row > Trans.col
+	GROUP BY m.row, Trans.col
+) x
+WHERE col = "q" OR row = "q";

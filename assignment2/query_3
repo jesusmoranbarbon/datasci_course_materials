@@ -1,0 +1,10 @@
+SELECT Count (*) FROM(
+	SELECT f_1.term
+		FROM frequency AS f_1
+		WHERE f_1.docid = "10398_txt_earn" AND f_1.count = 1
+	UNION
+	SELECT f_2.term
+		FROM frequency AS f_2
+		WHERE f_2.docid = "925_txt_trade" AND f_2.count=1
+
+) x;

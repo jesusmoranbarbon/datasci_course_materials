@@ -1,0 +1,10 @@
+SELECT Count(*) FROM(
+	SELECT f_1.docid, f_2.docid
+	FROM frequency f_1, frequency f_2
+	WHERE f_1.docid = f_2.docid AND f_1.term = "transactions" AND f_2.term = "world"
+) x;
+
+
+
+
+
